@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>JQuery</title>
+    <style>
+        #userid {
+            border: 2px solid blue;
+            margin: 5px;
+            padding: 10px;
+            background-color: gainsboro;
+        }
+    </style>
+</head>
+<body>
+    <div id="userid">
+        <h3 class="title"></h3>
+        <p class="body"></p>
+    </div>
+    <button id="load">Load Data</button>
+    <script>
+        $('#load').click(function () {
+
+    var $userid = $('#userid');
+
+    $.ajax({
+        type: 'GET',
+        url: 'https://jsonplaceholder.typicode.com/posts',
+        success: function(userid) {
+            $.each(userid,function(i,userid) {
+                $userid.append('<h3>title: '+ userid.title +'</h3>','<p> body; '+ userid.body +'</p>').animate({opacity:0.9},1000);
+            }); 
+        }
+    });
+});
+    </script>
+</div>
+</body>
+</html>
